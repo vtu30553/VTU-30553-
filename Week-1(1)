@@ -1,0 +1,68 @@
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+
+        while (n-- > 0) {
+            int x = sc.nextInt();
+            int y = sc.nextInt();
+
+            if (x == 1) {
+                // Check Even or Odd
+                if (y % 2 == 0) {
+                    System.out.println("EVEN");
+                } else {
+                    System.out.println("ODD");
+                }
+
+            } else if (x == 2) {
+                // Check Prime or Composite
+                boolean prime = true;
+
+                if (y <= 1) {
+                    prime = false;
+                } else {
+                    for (int i = 2; i <= y / i; i++) {
+                        if (y % i == 0) {
+                            prime = false;
+                            break;
+                        }
+                    }
+                }
+
+                if (prime) {
+                    System.out.println("PRIME");
+                } else {
+                    System.out.println("COMPOSITE");
+                }
+
+            } else if (x == 3) {
+                // Check Palindrome
+                if (isPalindrome(y)) {
+                    System.out.println("PALINDROME");
+                } else {
+                    System.out.println("NOT PALINDROME");
+                }
+            }
+        }
+
+        sc.close();
+    }
+
+    static boolean isPalindrome(int n) {
+        int original = n;
+        int reverse = 0;
+
+        while (n > 0) {
+            int digit = n % 10;
+            reverse = reverse * 10 + digit;
+            n = n / 10;
+        }
+
+        return original == reverse;
+    }
+}
